@@ -1,0 +1,340 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group col-sm-12 text-center">
+                <h1>
+                    <strong>
+                        <span class="text-info">Registrar </span>
+                        <span class="text-danger">Minera</span>
+                    </strong>
+                </h1>
+            </div>
+            <form class="form-row" [formGroup]="mineraRegistroForm" (ngSubmit)="agregarMinera()">
+                <div class="form-group col-md-3">
+                    <label>Código Minera</label>
+                    <input type="text" class="form-control" formControlName="codigounicoMinera" required
+                    [ngClass]="{
+                        'is-invalid': mineraRegistroForm.controls['codigounicoMinera'].invalid && 
+                                     (mineraRegistroForm.controls['codigounicoMinera'].dirty || 
+                                     mineraRegistroForm.controls['codigounicoMinera'].touched) , 
+                          'is-valid': mineraRegistroForm.controls['codigounicoMinera'].valid}">
+                    <div id="codigounicoMinera" class="invalid-feedback">
+                        <span class="text-danger" *ngIf="mineraRegistroForm.controls['codigounicoMinera'].hasError('required')">
+                            No puede dejar este campo vacío
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Estado</label>
+                    <select class="form-control" formControlName="estadoactividadMinera" required
+                    [ngClass]="{
+                        'is-invalid': mineraRegistroForm.controls['estadoactividadMinera'].invalid && 
+                                     (mineraRegistroForm.controls['estadoactividadMinera'].dirty || 
+                                     mineraRegistroForm.controls['estadoactividadMinera'].touched) , 
+                          'is-valid': mineraRegistroForm.controls['estadoactividadMinera'].valid}">
+                        <option value="" selected disabled>Seleccione un estado</option>
+                        <option *ngFor="let est of Estado" value="{{est.estado}}"> {{est.estado}} </option>
+                    </select>
+                    <div id="estadoactividadMinera" class="invalid-feedback">
+                        <span class="text-danger" *ngIf="mineraRegistroForm.controls['estadoactividadMinera'].hasError('required')">
+                            No puede dejar este campo vacío
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>RUC</label>
+                    <input type="text" class="form-control" formControlName="rucMinera" required
+                    [ngClass]="{
+                        'is-invalid': mineraRegistroForm.controls['rucMinera'].invalid && 
+                                     (mineraRegistroForm.controls['rucMinera'].dirty || 
+                                     mineraRegistroForm.controls['rucMinera'].touched) , 
+                          'is-valid': mineraRegistroForm.controls['rucMinera'].valid}">
+
+                        <div id="rucMinera" class="invalid-feedback">
+                            <span class="text-danger" *ngIf="mineraRegistroForm.controls['rucMinera'].hasError('required')">
+                                No puede dejar este campo vacío
+                            </span>
+                        </div>
+                        <div id="rucMinera" class="invalid-feedback">
+                            <span class="text-danger" *ngIf="mineraRegistroForm.controls['rucMinera'].hasError('min')">
+                                Mínimo 11 dígitos
+                            </span>
+                        </div>
+                        <div id="rucMinera" class="invalid-feedback">
+                            <span class="text-danger" *ngIf="mineraRegistroForm.controls['rucMinera'].hasError('max')">
+                                Máximo 11 dígitos
+                            </span>
+                        </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Nombre de Minera</label>
+                    <input type="text" class="form-control" formControlName="nombreMinera" required
+                    [ngClass]="{
+                        'is-invalid': mineraRegistroForm.controls['nombreMinera'].invalid && 
+                                     (mineraRegistroForm.controls['nombreMinera'].dirty || 
+                                     mineraRegistroForm.controls['nombreMinera'].touched) , 
+                          'is-valid': mineraRegistroForm.controls['nombreMinera'].valid}">
+
+                        <div id="nombreMinera" class="invalid-feedback">
+                            <span class="text-danger" *ngIf="mineraRegistroForm.controls['nombreMinera'].hasError('required')">
+                                No puede dejar este campo vacío
+                            </span>
+                        </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Departamento</label>
+                    <select class="form-control" (change)="ViewProv($event)" formControlName="departamentoMinera" required
+                    [ngClass]="{
+                        'is-invalid': mineraRegistroForm.controls['departamentoMinera'].invalid && 
+                                     (mineraRegistroForm.controls['departamentoMinera'].dirty || 
+                                     mineraRegistroForm.controls['departamentoMinera'].touched) , 
+                          'is-valid': mineraRegistroForm.controls['departamentoMinera'].valid}">
+
+                        <option value="" selected disabled>Seleccione un departamento</option>
+                        <option *ngFor="let dep of CurrentDepartamentos" value="{{dep.idDepartamento}}"> {{dep.nombreDepartamento}} </option>
+                    </select>
+                    <div id="departamentoMinera" class="invalid-feedback">
+                        <span class="text-danger" *ngIf="mineraRegistroForm.controls['departamentoMinera'].hasError('required')">
+                            No puede dejar este campo vacío
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group col-md-4" *ngIf="viewProvincia">
+                    <label>Provincia</label>
+                    <select class="form-control" (change)="ViewDist($event)" formControlName="provinciaMinera"
+                    [ngClass]="{
+                        'is-invalid': mineraRegistroForm.controls['provinciaMinera'].invalid && 
+                                     (mineraRegistroForm.controls['provinciaMinera'].dirty || 
+                                     mineraRegistroForm.controls['provinciaMinera'].touched) , 
+                          'is-valid': mineraRegistroForm.controls['provinciaMinera'].valid}">
+                        <option value="">Seleccione una provincia</option>
+                        <option *ngFor="let prov of CurrentProvincias" value="{{prov.idProvincia}}"> {{prov.nombreProvincia}} </option>
+                    </select>
+                    <div id="provinciaMinera" class="invalid-feedback">
+                        <span class="text-danger" *ngIf="mineraRegistroForm.controls['provinciaMinera'].hasError('required')">
+                            No puede dejar este campo vacío
+                        </span>
+                    </div>                
+                </div>
+                <div class="form-group col-md-4" *ngIf="viewDistrito">
+                    <label>Distrito</label>
+                    <select class="form-control" formControlName="distritoMinera" (change)="selectNombrDist()" required
+                    [ngClass]="{
+                        'is-invalid': mineraRegistroForm.controls['distritoMinera'].invalid && 
+                                     (mineraRegistroForm.controls['distritoMinera'].dirty || 
+                                     mineraRegistroForm.controls['distritoMinera'].touched) , 
+                          'is-valid': mineraRegistroForm.controls['distritoMinera'].valid}">
+                        <option value="">Selecciones un distrito</option>
+                        <option *ngFor="let dist of CurrentDistritos" value="{{dist.idDistrito}}"> {{dist.nombreDistrito}} </option>
+                    </select>
+                    <div id="distritoMinera" class="invalid-feedback">
+                        <span class="text-danger" *ngIf="mineraRegistroForm.controls['distritoMinera'].hasError('required')">
+                            No puede dejar este campo vacío
+                        </span>
+                    </div>  
+                </div>  
+                <div class="form-group col-md-12">
+                    <hr>
+                </div>
+                <div class="form-group col-md-12 text-center mb-0">
+                    <button class="btn btn-danger" [disabled]="!mineraRegistroForm.valid" >Agregar a la Lista</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="theadc text-center">
+                        <tr>
+                            <th scope="col">Código Único</th>
+                            <th scope="col">RUC</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Departamento</th>
+                            <th scope="col">Provincia</th>
+                            <th scope="col">Distrito</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Remover</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let list of dataSource | paginate: { itemsPerPage: 10, currentPage: p}" class="text-center">
+                            <td> {{list.codigounicoMinera}} </td>
+                            <td>{{list.rucMinera}}</td>
+                            <td>{{list.nombreMinera}}</td>
+                            <td>{{list.departamentoMinera}}</td>
+                            <td>{{list.provinciaMinera}}</td>
+                            <td>{{list.distritoMinera}}</td>                                
+                            <td>{{list.estadoactividadMinera}}</td>                                
+                            <td [class.active]=" list == ListMinera">
+                                <a (click)="seleccionarMinera(list)" class="mr-1"data-toggle="modal" data-target="#editarModal">
+                                    <i class="fa fa-pencil text-primary" style="font-size: 25px;"></i>
+                                </a>
+                                <a (click)="eliminarMinera(list)" >
+                                    <i class="fa fa-trash text-danger" style="font-size: 25px;"></i>
+                                </a>
+                            </td>                        
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls> 
+                </div>
+                <div class="form-group col-md-12">
+                    <hr>
+                </div>
+                <div class="form-group col-md-12 text-center mb-0">
+                    <button class="btn btn-danger" [disabled]="this.dataSource[0] == null || this.dataSource[0] == undefined" (click)="enviarData()">Registrar Lista</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Editar -->
+    <div class="modal fade" id="editarModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Minera</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                    </button>
+                </div>
+                <form name="mineraUpdateForm" [formGroup]="mineraUpdateForm" (ngSubmit)="editarMinera()">
+                    <div class="modal-body">
+
+                        <div class="form-group col-md-12">
+                            <label>Código Minera</label>
+                            <input type="text" class="form-control" formControlName="codigounicoMinera" required
+                            [ngClass]="{
+                                'is-invalid': mineraUpdateForm.controls['codigounicoMinera'].invalid && 
+                                            (mineraUpdateForm.controls['codigounicoMinera'].dirty || 
+                                            mineraUpdateForm.controls['codigounicoMinera'].touched) , 
+                                'is-valid': mineraUpdateForm.controls['codigounicoMinera'].valid}">
+                            <div id="codigounicoMinera" class="invalid-feedback">
+                                <span class="text-danger" *ngIf="mineraUpdateForm.controls['codigounicoMinera'].hasError('required')">
+                                    No puede dejar este campo vacío
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Estado</label>
+                            <select class="form-control" formControlName="estadoactividadMinera" required
+                            [ngClass]="{
+                                'is-invalid': mineraUpdateForm.controls['estadoactividadMinera'].invalid && 
+                                            (mineraUpdateForm.controls['estadoactividadMinera'].dirty || 
+                                            mineraUpdateForm.controls['estadoactividadMinera'].touched) , 
+                                'is-valid': mineraUpdateForm.controls['estadoactividadMinera'].valid}">
+                                <option value="" selected disabled>Seleccione un estado</option>
+                                <option *ngFor="let est of Estado" value="{{est.estado}}"> {{est.estado}} </option>
+                            </select>
+                            <div id="estadoactividadMinera" class="invalid-feedback">
+                                <span class="text-danger" *ngIf="mineraUpdateForm.controls['estadoactividadMinera'].hasError('required')">
+                                    No puede dejar este campo vacío
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>RUC</label>
+                            <input type="text" class="form-control" formControlName="rucMinera" required
+                            [ngClass]="{
+                                'is-invalid': mineraUpdateForm.controls['rucMinera'].invalid && 
+                                            (mineraUpdateForm.controls['rucMinera'].dirty || 
+                                            mineraUpdateForm.controls['rucMinera'].touched) , 
+                                'is-valid': mineraUpdateForm.controls['rucMinera'].valid}">
+        
+                                <div id="rucMinera" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="mineraUpdateForm.controls['rucMinera'].hasError('required')">
+                                        No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                                <div id="rucMinera" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="mineraUpdateForm.controls['rucMinera'].hasError('min')">
+                                        Mínimo 11 dígitos
+                                    </span>
+                                </div>
+                                <div id="rucMinera" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="mineraUpdateForm.controls['rucMinera'].hasError('max')">
+                                        Máximo 11 dígitos
+                                    </span>
+                                </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Nombre de Minera</label>
+                            <input type="text" class="form-control" formControlName="nombreMinera" required
+                            [ngClass]="{
+                                'is-invalid': mineraUpdateForm.controls['nombreMinera'].invalid && 
+                                            (mineraUpdateForm.controls['nombreMinera'].dirty || 
+                                            mineraUpdateForm.controls['nombreMinera'].touched) , 
+                                'is-valid': mineraUpdateForm.controls['nombreMinera'].valid}">
+        
+                                <div id="nombreMinera" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="mineraUpdateForm.controls['nombreMinera'].hasError('required')">
+                                        No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Departamento</label>
+                            <select class="form-control" (change)="ViewProv2($event)" formControlName="departamentoMinera" required
+                            [ngClass]="{
+                                'is-invalid': mineraUpdateForm.controls['departamentoMinera'].invalid && 
+                                            (mineraUpdateForm.controls['departamentoMinera'].dirty || 
+                                            mineraUpdateForm.controls['departamentoMinera'].touched) , 
+                                'is-valid': mineraUpdateForm.controls['departamentoMinera'].valid}">
+        
+                                <option value="" selected disabled>Seleccione un departamento</option>
+                                <option *ngFor="let dep of CurrentDepartamentos" value="{{dep.idDepartamento}}"> {{dep.nombreDepartamento}} </option>
+                            </select>
+                            <div id="departamentoMinera" class="invalid-feedback">
+                                <span class="text-danger" *ngIf="mineraUpdateForm.controls['departamentoMinera'].hasError('required')">
+                                    No puede dejar este campo vacío
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" (change)="ViewDist2($event)" *ngIf="viewProvincia2">
+                            <label>Provincia</label>
+                            <select class="form-control" formControlName="provinciaMinera"
+                            [ngClass]="{
+                                'is-invalid': mineraUpdateForm.controls['provinciaMinera'].invalid && 
+                                            (mineraUpdateForm.controls['provinciaMinera'].dirty || 
+                                            mineraUpdateForm.controls['provinciaMinera'].touched) , 
+                                'is-valid': mineraUpdateForm.controls['provinciaMinera'].valid}">
+                                <option value="">Seleccione una provincia</option>
+                                <option *ngFor="let prov of CurrentProvincias2" value="{{prov.idProvincia}}"> {{prov.nombreProvincia}} </option>
+                            </select>
+                            <div id="provinciaMinera" class="invalid-feedback">
+                                <span class="text-danger" *ngIf="mineraUpdateForm.controls['provinciaMinera'].hasError('required')">
+                                    No puede dejar este campo vacío
+                                </span>
+                            </div>                
+                        </div>
+                        <div class="form-group col-md-12" *ngIf="viewDistrito2">
+                            <label>Distrito</label>
+                            <select class="form-control" formControlName="distritoMinera" (change)="selectNombrDist2()" required
+                            [ngClass]="{
+                                'is-invalid': mineraUpdateForm.controls['distritoMinera'].invalid && 
+                                            (mineraUpdateForm.controls['distritoMinera'].dirty || 
+                                            mineraUpdateForm.controls['distritoMinera'].touched) , 
+                                'is-valid': mineraUpdateForm.controls['distritoMinera'].valid}">
+                                <option value="">Selecciones un distrito</option>
+                                <option *ngFor="let dist of CurrentDistritos2" value="{{dist.idDistrito}}"> {{dist.nombreDistrito}} </option>
+                            </select>
+                            <div id="distritoMinera" class="invalid-feedback">
+                                <span class="text-danger" *ngIf="mineraUpdateForm.controls['distritoMinera'].hasError('required')">
+                                    No puede dejar este campo vacío
+                                </span>
+                            </div>  
+                        </div> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="!mineraUpdateForm.valid" >Actualizar</button>
+                    </div>
+                </form>   
+            </div>
+        </div>
+    </div>
+</div>

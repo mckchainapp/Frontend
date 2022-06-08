@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Registro Minera - MckChain</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+
+    <body class="vh-100 bg-light" style="background: url(/assets/images/overlay-1.png) center;">
+
+        <div class="preloader">
+            <div class="status">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+
+        <div class="contain-box">
+            <div class="home-center">
+                <div class="home-desc-center">
+                    <div class="container">
+                        <div class="text-center">            
+                            <button type="submit" class="back-button btn text-primary btn-back"><a href="index" ><i class="mdi mdi-arrow-left mr-1"></i> Retroceder</a></button>
+                        </div> 
+                        <div class="row justify-content-center align-items center">
+                            <div class="col-lg-6" >
+                                <div class="p-5 mt-5 px-3 rounded bg-white animate__animated animate__fadeInRight"> 
+                                    <div class="text-center animate__animated animate__fadeInLeft">
+                                        <a href="">
+                                            <img src="/assets/images/LogoMckchain.png" alt="" height="80" />
+                                        </a>
+                                    </div>
+                                    <br>                              
+                                    <div class="text-center">
+                                        <div class="form-group col-sm-12 text-center">
+                                            <h1>
+                                                <strong>
+                                                    <span class="text-info">Registrar </span>
+                                                    <span class="text-danger">Minera</span>
+                                                </strong>
+                                            </h1>
+                                        </div>
+                                        <p class="text-muted f-18">Completa tu registro como Minera</p>
+                                    </div>
+
+                                    <div class="custom-form">
+                                        <form name="mineraSignupForm" [formGroup]="mineraSignupForm" (ngSubmit)="SignupUsuarioMinera()">
+
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Nombre de Usuario</label>
+                                                <input (input)="AlertDefault()" type="text" class="form-control" id="nombres" placeholder="Ingrese un nombre de usuario" required formControlName="usernameUsuario"
+                                                [ngClass]="{
+                                                    'is-invalid': mineraSignupForm.controls['usernameUsuario'].invalid && 
+                                                                 (mineraSignupForm.controls['usernameUsuario'].dirty || 
+                                                                 mineraSignupForm.controls['usernameUsuario'].touched) , 
+                                                      'is-valid': mineraSignupForm.controls['usernameUsuario'].valid}">
+                                                <div id="ruc" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="mineraSignupForm.controls['usernameUsuario'].hasError('required')">
+                                                        No puede dejar este campo vacío
+                                                    </span>
+                                                </div>    
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Contraseña</label>
+                                                <div class="input-group">
+                                                    <input (input)="AlertDefault()" [type]="passwordTextType ? 'text' : 'password'" class="form-control"
+                                                    placeholder="Ingresa tu Contraseña" formControlName="passwordUsuario" required
+                                                    [ngClass]="{
+                                                        'is-invalid': mineraSignupForm.controls['passwordUsuario'].invalid && 
+                                                                     (mineraSignupForm.controls['passwordUsuario'].dirty || 
+                                                                     mineraSignupForm.controls['passwordUsuario'].touched) , 
+                                                          'is-valid': mineraSignupForm.controls['passwordUsuario'].valid}">
+                                                   
+                                                    <div class="input-group-append" (click)="changepasswordTextType()">
+                                                        <a type="button" class="input-group-text"
+                                                            style="background-color: #4CB0F5; border-top-right-radius: 45%; border-bottom-right-radius: 45%;">
+                                                            <i class="fa" [ngClass]="{
+                                                                                        'fa-eye-slash': passwordTextType,
+                                                                                            'fa-eye': !passwordTextType
+                                                                                    }" id="decrypt" style="color: white;"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div id="passwordUsuario" class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="mineraSignupForm.controls['passwordUsuario'].hasError('required')">
+                                                            No puede dejar este campo vacío
+                                                        </span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="mineraSignupForm.controls['passwordUsuario'].hasError('minlength')">
+                                                            Debe contener al menos 8 caracteres
+                                                        </span>
+                                                    </div> 
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="mineraSignupForm.controls['passwordUsuario'].hasError('passwordnumber')">
+                                                            Debe contener al menos un número
+                                                        </span>
+                                                    </div> 
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="mineraSignupForm.controls['passwordUsuario'].hasError('passworduppercase')">
+                                                            Debe contener al menos una letra mayúscula
+                                                        </span>
+                                                    </div> 
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="mineraSignupForm.controls['passwordUsuario'].hasError('passwordsmallcase')">
+                                                            Debe contener al menos una letra minúscula
+                                                        </span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="mineraSignupForm.controls['passwordUsuario'].hasError('passwordspecialcharacter')">
+                                                            Debe contener al menos un carácter especial
+                                                        </span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                            </div>
+
+                                            <!--<input type="reset" value="Limpiar (:">-->
+                                            <div class="mt-3">
+                                                <button type="submit" [disabled]="!mineraSignupForm.valid" class="btn btn-danger btn-block text-uppercase ">Regístrate</button>
+                                            </div>
+
+                                            <div *ngIf="verificar" class="col-sm-12 mt-3">
+                                                <div class="alert alert-info text-center" role="alert">
+                                                    {{message}}
+                                                </div>
+                                            </div>
+                                            
+                                            <div *ngIf="verificar2" class="col-sm-12 mt-3">
+                                                <div class="alert alert-danger text-center" role="alert">
+                                                    {{message}}
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

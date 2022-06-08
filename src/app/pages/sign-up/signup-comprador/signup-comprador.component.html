@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Registro Minera - MckChain</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+
+    <body class="vh-100 bg-light" style="background: url(/assets/images/overlay-1.png) center;">
+
+        <div class="preloader">
+            <div class="status">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+
+        <div class="contain-box">
+            <div class="home-center">
+                <div class="home-desc-center">
+                    <div class="container">
+                        <div class="text-center">            
+                            <button type="submit" class="back-button btn text-primary btn-back"><a href="index" ><i class="mdi mdi-arrow-left mr-1"></i> Retroceder</a></button>
+                        </div> 
+                        <div class="row justify-content-center align-items center">
+                            <div class="col-lg-6">
+                                <div class="p-5 mt-5 px-3 rounded bg-white animate__animated animate__fadeInRight"> 
+                                    <div class="text-center animate__animated animate__fadeInLeft">
+                                        <a href="">
+                                            <img src="/assets/images/LogoMckchain.png" alt="" height="80" />
+                                        </a>
+                                    </div>
+                                    <br>                              
+                                    <div class="text-center">
+                                        <div class="form-group col-sm-12 text-center">
+                                            <h1>
+                                                <strong>
+                                                    <span class="text-info">Registrar </span>
+                                                    <span class="text-danger">Comprador</span>
+                                                </strong>
+                                            </h1>
+                                        </div>
+                                        <p class="text-muted f-18">Completa tu registro como Comprador</p>
+                                    </div>
+
+                                    <div class="custom-form">
+                                        <form name="compradorSignupForm" [formGroup]="compradorSignupForm" (ngSubmit)="SignupUsuarioEncargado()">
+
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Nombres</label>
+                                                <input type="text" class="form-control" id="nombres" placeholder="Ingrese sus nombres" required formControlName="nombreUsuario" 
+                                                [ngClass]="{
+                                                    'is-invalid': compradorSignupForm.controls['nombreUsuario'].invalid && 
+                                                                 (compradorSignupForm.controls['nombreUsuario'].dirty || 
+                                                                 compradorSignupForm.controls['nombreUsuario'].touched) , 
+                                                      'is-valid': compradorSignupForm.controls['nombreUsuario'].valid}">
+                                                <div id="nombreUsuario" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="compradorSignupForm.controls['nombreUsuario'].hasError('required')">
+                                                        No puede dejar este campo vacío
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Apellidos</label>
+                                                <input type="text" class="form-control" id="apellidoUsuario" placeholder="Ingrese sus apellidos" required formControlName="apellidoUsuario"
+                                                [ngClass]="{
+                                                    'is-invalid': compradorSignupForm.controls['apellidoUsuario'].invalid && 
+                                                                 (compradorSignupForm.controls['apellidoUsuario'].dirty || 
+                                                                 compradorSignupForm.controls['apellidoUsuario'].touched) , 
+                                                      'is-valid': compradorSignupForm.controls['apellidoUsuario'].valid}">
+                                                <div id="apellidoUsuario" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="compradorSignupForm.controls['passwordUsuario'].hasError('required')">
+                                                        No puede dejar este campo vacío
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">RUC</label>
+                                                <input type="text" class="form-control" id="nombres" placeholder="Ingrese su RUC" required formControlName="rucUsuario"
+                                                [ngClass]="{
+                                                    'is-invalid': compradorSignupForm.controls['rucUsuario'].invalid && 
+                                                                 (compradorSignupForm.controls['rucUsuario'].dirty || 
+                                                                 compradorSignupForm.controls['rucUsuario'].touched) , 
+                                                      'is-valid': compradorSignupForm.controls['rucUsuario'].valid}">
+                                                <div id="rucUsuario" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="compradorSignupForm.controls['rucUsuario'].hasError('required')">
+                                                        No puede dejar este campo vacío
+                                                    </span>
+                                                </div>
+                                                <div id="rucUsuario" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="compradorSignupForm.controls['rucUsuario'].hasError('min')">
+                                                        Mínimo 11 carácteres
+                                                    </span>
+                                                </div>
+                                                <div id="rucUsuario" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="compradorSignupForm.controls['rucUsuario'].hasError('max')">
+                                                        Máximo 11 carácteres
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Email</label>
+                                                <input type="email" class="form-control" id="emailUsuario" placeholder="Ingrese un correo" required formControlName="emailUsuario"
+                                                [ngClass]="{
+                                                    'is-invalid': compradorSignupForm.controls['emailUsuario'].invalid && 
+                                                                 (compradorSignupForm.controls['emailUsuario'].dirty || 
+                                                                 compradorSignupForm.controls['emailUsuario'].touched) , 
+                                                      'is-valid': compradorSignupForm.controls['emailUsuario'].valid}">
+                                                <div id="emailUsuario" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="compradorSignupForm.controls['emailUsuario'].hasError('required')">
+                                                        No puede dejar este campo vacío
+                                                    </span>
+                                                </div>
+                                                <div id="emailUsuario" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="compradorSignupForm.controls['emailUsuario'].hasError('email')">
+                                                        No puede dejar este campo vacío
+                                                    </span>
+                                                </div>
+                                            </div>                                            
+
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Usuario</label>
+                                                <input type="text" class="form-control" id="nombres" placeholder="Ingrese un usuario" required formControlName="usernameUsuario"
+                                                [ngClass]="{
+                                                    'is-invalid': compradorSignupForm.controls['usernameUsuario'].invalid && 
+                                                                 (compradorSignupForm.controls['usernameUsuario'].dirty || 
+                                                                 compradorSignupForm.controls['usernameUsuario'].touched) , 
+                                                      'is-valid': compradorSignupForm.controls['usernameUsuario'].valid}">
+                                                <div id="usernameUsuario" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="compradorSignupForm.controls['usernameUsuario'].hasError('required')">
+                                                        No puede dejar este campo vacío
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Contraseña</label>
+                                                <div class="input-group">
+                                                    <input (input)="AlertDefault()" [type]="passwordTextType ? 'text' : 'password'" class="form-control"
+                                                    placeholder="Ingresa tu Contraseña" formControlName="passwordUsuario" required
+                                                    [ngClass]="{
+                                                        'is-invalid': compradorSignupForm.controls['passwordUsuario'].invalid && 
+                                                                     (compradorSignupForm.controls['passwordUsuario'].dirty || 
+                                                                     compradorSignupForm.controls['passwordUsuario'].touched) , 
+                                                          'is-valid': compradorSignupForm.controls['passwordUsuario'].valid}">
+                                                   
+                                                    <div class="input-group-append" (click)="changepasswordTextType()">
+                                                        <a type="button" class="input-group-text"
+                                                            style="background-color: #4CB0F5; border-top-right-radius: 45%; border-bottom-right-radius: 45%;">
+                                                            <i class="fa" [ngClass]="{
+                                                                                        'fa-eye-slash': passwordTextType,
+                                                                                            'fa-eye': !passwordTextType
+                                                                                    }" id="decrypt" style="color: white;"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div id="passwordUsuario" class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="compradorSignupForm.controls['passwordUsuario'].hasError('required')">
+                                                            No puede dejar este campo vacío
+                                                        </span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="compradorSignupForm.controls['passwordUsuario'].hasError('minlength')">
+                                                            Debe contener al menos 8 caracteres
+                                                        </span>
+                                                    </div> 
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="compradorSignupForm.controls['passwordUsuario'].hasError('passwordnumber')">
+                                                            Debe contener al menos un número
+                                                        </span>
+                                                    </div> 
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="compradorSignupForm.controls['passwordUsuario'].hasError('passworduppercase')">
+                                                            Debe contener al menos una letra mayúscula
+                                                        </span>
+                                                    </div> 
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="compradorSignupForm.controls['passwordUsuario'].hasError('passwordsmallcase')">
+                                                            Debe contener al menos una letra minúscula
+                                                        </span>
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="compradorSignupForm.controls['passwordUsuario'].hasError('passwordspecialcharacter')">
+                                                            Debe contener al menos un carácter especial
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--<input type="reset" value="Limpiar (:">-->
+                                            <div class="mt-3">
+                                                <button type="submit" class="btn btn-primary btn-block text-uppercase ">Regístrate</button>
+                                            </div>
+
+                                            <div class="col-sm-12 mt-3" *ngIf="this.verificar">
+                                                <div class="alert text-center" [ngClass]="classbg" role="alert">
+                                                    {{message}}
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mt-4 mb-0 text-center">
+                                                <p class="mb-0">¿Tienes una cuenta? <a href="signin/comprador" class="text-info">¡Logueate!</a></p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

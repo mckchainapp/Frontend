@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MckchainApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <link rel="stylesheet" href="./assets/css/pagination.css">
+  <link rel="stylesheet" href="./assets/css/newstyle.css">
+  <link rel="stylesheet" href="./assets/vendor/chartist/css/chartist.min.css">
+  <link rel="stylesheet" href="./assets/vendor//select2/css/select2.min.css">
+  <link href="./assets/vendor/summernote/summernote.css" rel="stylesheet">
+  <link href="../../assets/css/style.css" rel="stylesheet">
+  <link href="./assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+  <link href="./assets/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
+  <link href="./assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="./assets/vendor/chartist/css/chartist.min.css">
+
+	<!--<link href="./assets/vendor/dropzone/dist/dropzone.css" rel="stylesheet">-->
+</head>
+
+<body>
+  
+  <app-root></app-root>
+
+  <script type="text/javascript" src="./assets/vendor/global/global.min.js"></script>
+
+  <script type="text/javascript" src="./assets/vendor/select2/js/select2.full.min.js"></script>
+  <script type="text/javascript" src="./assets/js/plugins-init/select2-init.js"></script>
+
+      <!-- Datatable -->
+  <script type="text/javascript" src="./assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="./assets/js/plugins-init/datatables.init.js"></script>
+
+    
+  <script type="text/javascript" src="./assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="./assets/vendor/chart.js/Chart.bundle.min.js"></script>
+  <script type="text/javascript" src="./assets/js/custom.min.js"></script>
+  <script type="text/javascript" src="./assets/js/deznav-init.js"></script>
+  <script type="text/javascript" src="./assets/vendor/owl-carousel/owl.carousel.js"></script>
+    
+  <!-- Chart piety plugin files -->
+  <script type="text/javascript" src="./assets/vendor/peity/jquery.peity.min.js"></script>
+  <!-- Dashboard 1 -->
+  <script type="text/javascript" src="./assets/js/dashboard/dashboard-1.js"></script>
+    <!-- Apex Chart -->
+  <script type="text/javascript" src="./assets/vendor/apexchart/apexchart.js"></script>
+		
+  <!-- Inicio -->
+	<!-- Daterangepicker -->
+  <!-- momment js is must -->
+  <script src="./assets/vendor/moment/moment.min.js"></script>
+  <script src="./assets/vendor/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <!--charts
+  <script src="./assets/vendor/chartist/js/chartist.min.js"></script>
+  <script src="./assets/vendor/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
+  <script src="./assets/js/plugins-init/chartist-init.js"></script>
+  -->
+  <!-- clockpicker -->
+  <script src="./assets/vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
+  <!-- asColorPicker -->
+  <script src="./assets/vendor/jquery-asColor/jquery-asColor.min.js"></script>
+  <script src="./assets/vendor/jquery-asGradient/jquery-asGradient.min.js"></script>
+  <script src="./assets/vendor/jquery-asColorPicker/js/jquery-asColorPicker.min.js"></script>
+  <!-- Material color picker -->
+  <script src="./assets/vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+  <!-- pickdate -->
+  <script src="./assets/vendor/pickadate/picker.js"></script>
+  <script src="./assets/vendor/pickadate/picker.time.js"></script>
+  <script src="./assets/vendor/pickadate/picker.date.js"></script>
+
+	<!-- Summernote -->
+  <script src="./assets/vendor/summernote/js/summernote.min.js"></script>
+  <!-- Summernote init -->
+  <script src="./assets/js/plugins-init/summernote-init.js"></script>
+
+  <!-- Daterangepicker -->
+  <script src="./assets/js/plugins-init/bs-daterange-picker-init.js"></script>
+  <!-- Clockpicker init -->
+  <script src="./assets/js/plugins-init/clock-picker-init.js"></script>
+  <!-- asColorPicker init -->
+  <script src="./assets/js/plugins-init/jquery-asColorPicker.init.js"></script>
+  <!-- Material color picker init -->
+  <script src="./assets/js/plugins-init/material-date-picker-init.js"></script>
+  <!-- Pickdate -->
+  <script src="./assets/js/plugins-init/pickadate-init.js"></script>
+	<!-- Fin-->
+  <!--<script src="./assets/vendor/dropzone/dist/dropzone.js"></script>-->
+
+  <script>
+		function carouselReview(){
+			/*  testimonial one function by = owl.carousel.js */
+			jQuery('.testimonial-one').owlCarousel({
+				loop:true,
+				autoplay:true,
+				margin:30,
+				nav:false,
+				dots: false,
+				left:true,
+				navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
+				responsive:{
+					0:{
+						items:1
+					},
+					484:{
+						items:2
+					},
+					882:{
+						items:3
+					},	
+					1200:{
+						items:2
+					},			
+					
+					1540:{
+						items:3
+					},
+					1740:{
+						items:4
+					}
+				}
+			})			
+		}
+		jQuery(window).on('load',function(){
+			setTimeout(function(){
+				carouselReview();
+			}, 1000); 
+		});
+	</script>
+</body>
+</html>
+

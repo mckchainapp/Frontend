@@ -1,0 +1,45 @@
+<div class="form-row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body" >
+                <form name="MineraUpdateForm" [formGroup]="MineraUpdateForm" (ngSubmit)="UpdateOperario()">
+                    <div class="form-group col-sm-12 text-center">
+                        <h2>
+                            <span class="text-info">Editar </span>
+                            <span class="text-danger">Información</span>
+                        </h2>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-2">
+                        </div>
+                        <div class="form-group col-sm-8">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" formControlName="nombreUsuario">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-2">
+                        </div>
+                        <div class="form-group col-sm-8">
+                            <label>Apellido</label>
+                            <input type="text" class="form-control" id="apellidoUsuario" name="apellidoUsuario" formControlName="apellidoUsuario">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-2">
+                        </div>
+                        <div class="form-group col-sm-8">
+                            <label>Teléfono</label>
+                            <input type="text" class="form-control" id="telefonoUsuario" name="telefonoUsuario" formControlName="telefonoUsuario">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 text-center">
+                        <button class="btn light btn-danger" [disabled]="!MineraUpdateForm.valid">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

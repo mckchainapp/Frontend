@@ -1,0 +1,48 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="form-row col-sm-12">
+                <div class="form-group col-sm-3 ml-auto">
+                    <input type="text" class="form-control" placeholder="Busque Aquí.." name="FilterPostNombre" >
+                </div>  
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="theadc text-center">
+                        <tr>
+                            <th scope="col">Código Único</th>
+                            <th scope="col">RUC</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Departamento</th>
+                            <th scope="col">Provincia</th>
+                            <th scope="col">Distrito</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let list of listadata   
+                                                            | paginate: { itemsPerPage: 10, currentPage: p}" class="text-center">
+                            <td> {{list.codigounicoMinera}} </td>
+                            <td>{{list.rucMinera}}</td>
+                            <td>{{list.nombreMinera}}</td>
+                            <td>{{list.departamentoMinera}}</td>
+                            <td>{{list.provinciaMinera}}</td>
+                            <td>{{list.distritoMinera}}</td>
+                            <td *ngIf="list.estadoactividadMinera == 'VIGENTE'">
+                                <span class="badge light badge-success">{{list.estadoactividadMinera}}</span>
+                            </td>
+                            <td *ngIf="list.estadoactividadMinera == 'SUSPENDIDO'">
+                                <span class="badge light badge-danger">{{list.estadoactividadMinera}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

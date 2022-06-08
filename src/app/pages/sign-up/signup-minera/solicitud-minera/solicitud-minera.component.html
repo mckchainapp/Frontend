@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Registro Minera - MckChain</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+
+    <body class="vh-100 bg-light" style="background: url(/assets/images/overlay-1.png) center;">
+
+        <div class="preloader">
+            <div class="status">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+
+        <div class="contain-box">
+            <div class="home-center">
+                <div class="home-desc-center">
+                    <div class="container">
+                        <div class="text-center">            
+                            <button type="submit" class="back-button btn text-primary btn-back"><a href="index" ><i class="mdi mdi-arrow-left mr-1"></i> Retroceder</a></button>
+                        </div> 
+                        <div class="row justify-content-center align-items center">
+                            <div class="col-lg-6" *ngIf="this.verificar3">
+                                <div class="p-5 mt-5 px-3 rounded bg-white animate__animated animate__fadeInRight"> 
+                                    <div class="text-center animate__animated animate__fadeInLeft">
+                                        <a href="">
+                                            <img src="/assets/images/LogoMckchain.png" alt="" height="80" />
+                                        </a>
+                                    </div>
+                                    <br>                              
+                                    <div class="text-center">
+                                        <div class="form-group col-sm-12 text-center">
+                                            <h1>
+                                                <strong>
+                                                    <span class="text-info">Solicitud </span>
+                                                    <span class="text-danger">Minera</span>
+                                                </strong>
+                                            </h1>
+                                        </div>
+                                        <p class="text-muted f-18">Solicite su registro como Minera</p>
+                                    </div>
+
+                                    <div class="custom-form">
+                                        <form name="mineraSolicitudForm" [formGroup]="mineraSolicitudForm" (ngSubmit)="SignupUsuarioMinera()" >
+
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">RUC</label>
+                                                <input (input)="AlertDefault()" type="number" class="form-control" id="nombres" placeholder="Ingrese su RUC" required formControlName="rucMinera"
+                                                [ngClass]="{
+                                                    'is-invalid': mineraSolicitudForm.controls['rucMinera'].invalid && 
+                                                                 (mineraSolicitudForm.controls['rucMinera'].dirty || 
+                                                                 mineraSolicitudForm.controls['rucMinera'].touched) , 
+                                                      'is-valid': mineraSolicitudForm.controls['rucMinera'].valid}">
+                                                <div id="ruc" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="mineraSolicitudForm.controls['rucMinera'].hasError('required')">
+                                                        No puede dejar este campo vacío
+                                                    </span>
+                                                </div>    
+                                                <div id="ruc" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="mineraSolicitudForm.controls['rucMinera'].hasError('min')">
+                                                        Ingrese mínimo 11 carácteres
+                                                    </span>
+                                                </div>  
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Código Único</label>
+                                                <input (input)="AlertDefault()" type="number" class="form-control" id="nombres" placeholder="Ingrese su código" required formControlName="codigounicoMinera"
+                                                 [ngClass]="{
+                                                    'is-invalid': mineraSolicitudForm.controls['codigounicoMinera'].invalid && 
+                                                                 (mineraSolicitudForm.controls['codigounicoMinera'].dirty || 
+                                                                 mineraSolicitudForm.controls['codigounicoMinera'].touched) , 
+                                                      'is-valid': mineraSolicitudForm.controls['codigounicoMinera'].valid}">
+                                                <div id="codigo" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="mineraSolicitudForm.controls['codigounicoMinera'].hasError('required')">
+                                                        No puede dejar este campo vacío
+                                                    </span>
+                                                </div>  
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Email</label>
+                                                <input (input)="AlertDefault()" type="email" class="form-control" id="nombres" placeholder="Ingrese su correo" required formControlName="emailMinera"
+                                                [ngClass]="{
+                                                   'is-invalid': mineraSolicitudForm.controls['emailMinera'].invalid && 
+                                                                (mineraSolicitudForm.controls['emailMinera'].dirty || 
+                                                                mineraSolicitudForm.controls['emailMinera'].touched) , 
+                                                     'is-valid': mineraSolicitudForm.controls['emailMinera'].valid}">
+                                               <div id="emailUsuario" class="invalid-feedback">
+                                                   <span class="text-danger" *ngIf="mineraSolicitudForm.controls['emailMinera'].hasError('required')">
+                                                       No puede dejar este campo vacío
+                                                   </span>
+                                               </div>    
+                                               <div id="emailUsuario" class="invalid-feedback">
+                                                   <span class="text-danger" *ngIf="mineraSolicitudForm.controls['emailMinera'].hasError('email')">
+                                                       Debe ingresar un correo
+                                                   </span>
+                                               </div>   
+                                            </div>
+                                            <!--<input type="reset" value="Limpiar (:">-->
+                                            <div class="mt-3">
+                                                <button type="submit" [disabled]="!mineraSolicitudForm.valid" class="btn btn-danger btn-block text-uppercase ">Regístrate</button>
+                                            </div>
+
+                                            <div *ngIf="verificar" class="col-sm-12 mt-3">
+                                                <div class="alert alert-info text-center" role="alert">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="verificar2" class="col-sm-12 mt-3">
+                                                <div class="alert alert-danger text-center" role="alert">
+                                                    {{message}}
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-4 mb-0 text-center">
+                                                <p class="mb-0">¿Tienes una cuenta? <a href="signin/minera" class="text-info">¡Logueate!</a></p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="verificar || verificar2" class="col-lg-8 mt-5">
+                                <div class="mt-5">
+                                    <div class="card">
+                                        <div class="card-body mt-5">
+                                            <div class="form-group col-sm-12 text-center">
+                                                <h1>
+                                                    <strong>
+                                                        <span class="text-info">Aprobación </span>
+                                                        <span class="text-danger">Formulario de solicitud</span>
+                                                    </strong>
+                                                </h1>
+                                            </div>
+                                            <div class="form-group mt-5">
+                                                <h2 class="card-text text-center">
+                                                    {{message}}
+                                                </h2>
+                                            </div>
+                                            <div class="form-group text-center" *ngIf="verificar">
+                                                <span class="text-success" style="font-size: 100px;"><i class="mdi mdi-check-circle-outline"></i></span>
+                                            </div>
+                                            
+                                            <div class="form-group text-center" *ngIf="verificar2">
+                                                <span class="text-danger" style="font-size: 100px;"><i class="mdi mdi-close-circle-outline"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

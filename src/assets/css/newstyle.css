@@ -1,0 +1,12 @@
+.theadc{
+    background-color: #4CB0F5;
+    color: #ffff;
+    border-radius: calc(0.75rem - 1px) calc(0.75rem - 1px) 0 0;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+input[type=number] { -moz-appearance:textfield; }

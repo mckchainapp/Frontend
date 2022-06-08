@@ -1,0 +1,126 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Solicitudes Pendientes</h5>
+            <div class="input-group mb-3 diet-search ml-auto">
+                <input type="text" class="form-control" placeholder="Buscar Aquí" name="FilterPostPendiente" [(ngModel)]="FilterPostPendiente">
+                <div class="input-group-append">
+                    <button class="btn light btn-info" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card-body">
+            
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="theadc text-center">
+                        <tr>
+                            <!--<th scope="col">RUC</th>
+                            <th scope="col">Minera</th>
+                            <th scope="col">Ubicación</th>
+                            <th scope="col">Fecha de Solicutud</th>
+                            <th scope="col">Acciones</th>-->
+                            <th scope="col">RUC</th>
+                            <th scope="col">Minera</th>
+                            <th scope="col">Código Único</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let sol of solicitudes | solicitudPendiente:FilterPostPendiente | paginate: { itemsPerPage: 5, currentPage: p}" class="text-center">
+                            <td> {{sol.rucMinera}} </td>
+                            <td> {{sol.nombreMinera}} </td>
+                            <td> {{sol.codigounicoMinera}} </td>
+                            <td> {{sol.emailMinera}} </td>
+                            <td [class.active]=" sol == ListSolAp" (click)="Seleccionarsol(sol)">
+                                <a (click)="AprobarSolicitud(sol)" type="button" class="btn light btn-info mr-2">
+                                    <span class="btn-icon-left text-info">
+                                        <i class="fa fa-check"></i>
+                                    </span>Permitir
+                                </a> 
+                                <a type="button" class="btn light btn-danger" data-toggle="modal" data-target="#modalrechazar" >
+                                    <span class="btn-icon-left text-danger">
+                                        <i class="fa fa-times"></i>
+                                    </span>Rechazar
+                                </a> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Solicitudes Aprobadas</h5>
+            <div class="input-group mb-3 diet-search ml-auto">
+                <input type="text" class="form-control" placeholder="Buscar Aquí" name="FilterPostAprobada" [(ngModel)]="FilterPostAprobada">
+                <div class="input-group-append">
+                    <button class="btn light btn-info" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card-body">
+            
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="theadc text-center">
+                        <tr>
+                            <!--<th scope="col">RUC</th>
+                            <th scope="col">Minera</th>
+                            <th scope="col">Ubicación</th>
+                            <th scope="col">Fecha de Solicutud</th>
+                            <th scope="col">Acciones</th>-->
+                            <th scope="col">RUC</th>
+                            <th scope="col">Minera</th>
+                            <th scope="col">Código Único</th>
+                            <th scope="col">Correo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let solap of solicitudesaprov | solicitudAprobada:FilterPostAprobada | paginate: { itemsPerPage: 5, currentPage: q}" class="text-center">
+                            <td> {{solap.rucMinera}} </td>
+                            <td> {{solap.nombreMinera}} </td>
+                            <td> {{solap.codigounicoMinera}} </td>
+                            <td> {{solap.emailMinera}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <pagination-controls (pageChange)="q = $event" previousLabel="" nextLabel=""></pagination-controls> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalrechazar">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="notificaiton-title mb-2"><strong>¡Alerta!</strong> Esto es un cambio permanente</p>
+                <p>¿Seguro que desea rechazar la solicitud?</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="cursor: pointer;" (click)="RechazarSolicitud()" class="btn btn-success btn-sm mr-1">Confirmar</button>
+                <button type="button" style="cursor: pointer;" class="btn btn-primary btn-sm" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

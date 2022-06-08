@@ -1,0 +1,43 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Verificacion - MckChain</title>
+    </head>
+    <body>
+        <div class="form-row" *ngIf="verificar">
+            <div class="form-group col-lg-2 mt-5">
+            </div>
+
+            <div class="form-group col-lg-8 mt-5">
+                <div class="mt-5">
+                    <div class="card">
+                        <div class="card-body mt-5">
+                            <div class="form-group col-sm-12 text-center">
+                                <h1>
+                                    <strong>
+                                        <span class="text-info">Aprobación </span>
+                                        <span class="text-danger">Formulario de solicitud</span>
+                                    </strong>
+                                </h1>
+                            </div>
+                            <div class="form-group mt-5">
+                                <h2 class="card-text text-center">
+                                    {{message}}
+                                </h2>
+                            </div>
+                            <div class="form-group text-center" >
+                                <span class="text-success" style="font-size: 100px;"><i class="mdi mdi-check-circle-outline"></i></span>
+                            </div>
+                            <div class="form-group text-center" >
+                                <a class="btn btn-success" href="signin/comprador">Inicie Sesión</a>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

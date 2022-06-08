@@ -1,0 +1,155 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group mt-3 ml-2 mr-auto">
+                    <h3>Pedido de Estudio</h3>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3 diet-search">
+                        <input type="text" class="form-control" placeholder="Buscar Aquí">
+                        <div class="input-group-append">
+                            <button class="btn light btn-info" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="theadc text-center">
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Mineral</th>
+                            <th scope="col">Fecha Pedido</th>
+                            <th scope="col">Fase Mineral</th>
+                            <th scope="col">Comprador</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let est of estudioP | paginate: { itemsPerPage: 5, currentPage: p}" class="text-center">
+                            <td> {{est.idPedido}} </td>
+                            <td> {{est.nombreMineral}} </td>
+                            <td> {{est.fechaPedido}} </td>
+                            <td> {{est.faseMineral}} </td>
+                            <td> {{est.nombreComprador}} </td>
+                            <td [class.active]="est == idpedido" (click)="pedirAnalisis(est)">
+                                <a data-toggle="modal" data-target="#agregar"  type="button" class="btn light btn-success" >
+                                    <span class="btn-icon-left text-success">
+                                        <i class="fa fa-pencil"></i>
+                                    </span>Análisis
+                                </a> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="agregar">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <span class="text-info">Registrar </span>
+                    <span class="text-danger">Análisis de Ley</span>
+                </h2>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="analisisLeyForm" (ngSubmit)="registrarAnalisisLey()">
+                <div class="modal-body text-center">
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <label>Peso</label>
+                            <input type="text" class="form-control"  id="nombreZonaExploracion" name="nombreZonaExploracion" formControlName="pesoAnalisisLey" required
+                            [ngClass]="{
+                                'is-invalid': analisisLeyForm.controls['pesoAnalisisLey'].invalid && 
+                                             (analisisLeyForm.controls['pesoAnalisisLey'].dirty || 
+                                             analisisLeyForm.controls['pesoAnalisisLey'].touched) , 
+                                  'is-valid': analisisLeyForm.controls['pesoAnalisisLey'].valid}">
+                                <div id="pesoAnalisisLey" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="analisisLeyForm.controls['pesoAnalisisLey'].hasError('required')">
+                                        No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>Distribución Granulamétrica</label>
+                            <input type="text" class="form-control"  id="nombreZonaExploracion" name="nombreZonaExploracion" formControlName="distribuciongranulometricaAnalisisLey" required 
+                            [ngClass]="{
+                                'is-invalid': analisisLeyForm.controls['distribuciongranulometricaAnalisisLey'].invalid && 
+                                             (analisisLeyForm.controls['distribuciongranulometricaAnalisisLey'].dirty || 
+                                             analisisLeyForm.controls['distribuciongranulometricaAnalisisLey'].touched) , 
+                                  'is-valid': analisisLeyForm.controls['distribuciongranulometricaAnalisisLey'].valid}">
+                                <div id="distribuciongranulometricaAnalisisLey" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="analisisLeyForm.controls['distribuciongranulometricaAnalisisLey'].hasError('required')">
+                                        No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>Humedad</label>
+                            <input type="text" class="form-control"  id="nombreZonaExploracion" name="nombreZonaExploracion" formControlName="humedadAnalisisLey" required [ngClass]="{
+                                'is-invalid': analisisLeyForm.controls['humedadAnalisisLey'].invalid && 
+                                             (analisisLeyForm.controls['humedadAnalisisLey'].dirty || 
+                                             analisisLeyForm.controls['humedadAnalisisLey'].touched) , 
+                                  'is-valid': analisisLeyForm.controls['humedadAnalisisLey'].valid}">
+                                <div id="humedadAnalisisLey" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="analisisLeyForm.controls['humedadAnalisisLey'].hasError('required')">
+                                        No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>Densidad de la Pulpa</label>
+                            <input type="text" class="form-control" formControlName="densidadpulpaAnalisisLey" required [ngClass]="{
+                                'is-invalid': analisisLeyForm.controls['densidadpulpaAnalisisLey'].invalid && 
+                                             (analisisLeyForm.controls['densidadpulpaAnalisisLey'].dirty || 
+                                             analisisLeyForm.controls['densidadpulpaAnalisisLey'].touched) , 
+                                  'is-valid': analisisLeyForm.controls['densidadpulpaAnalisisLey'].valid}">
+                                <div id="densidadpulpaAnalisisLey" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="analisisLeyForm.controls['densidadpulpaAnalisisLey'].hasError('required')">
+                                        No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>Caudal</label>
+                            <input type="text" class="form-control" formControlName="caudalAnalisisLey" required [ngClass]="{
+                                'is-invalid': analisisLeyForm.controls['caudalAnalisisLey'].invalid && 
+                                             (analisisLeyForm.controls['caudalAnalisisLey'].dirty || 
+                                             analisisLeyForm.controls['caudalAnalisisLey'].touched) , 
+                                  'is-valid': analisisLeyForm.controls['caudalAnalisisLey'].valid}">
+                                <div id="caudalAnalisisLey" class="invalid-feedback">
+                                    <span class="text-danger" *ngIf="analisisLeyForm.controls['caudalAnalisisLey'].hasError('required')">
+                                        No puede dejar este campo vacío
+                                    </span>
+                                </div>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <div *ngIf="verficaragregar" class="form-group col-sm-12">
+                            <div class="alert alert-dismissible fade show" [ngClass]="alertagregar">
+                                <strong>{{messageagregar}}</strong> 
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-info" [disabled]="!analisisLeyForm.valid" >Confirmar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>  

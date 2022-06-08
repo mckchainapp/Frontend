@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Inicio</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/images/favicon.png">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+
+
+        <!-- Main wrapper start -->
+        <div id="main-wrapper">
+
+            <!-- Header start-->
+            <!-- Header end ti-comment-alt -->
+
+            <!-- Sidebar start -->
+            <div class="nav-header">
+                <a href="home" style="cursor:pointer;" class="brand-logo">
+                    <img class="logo-abbr" src="../../../../assets/images/OnlyLogoMckhain.png" alt="">
+                    <img class="logo-compact" src="../../../../assets/images/OnlyLogoMckhain.png" alt="">
+                    <img class="brand-title" src="../../../../assets/images/OnlyLetra.png" alt="">
+                </a>
+
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="line" style="background: #FF2B5C !important"></span><span class="line" style="background: #4CB0F5 !important"></span><span class="line" style="background: #FF2B5C !important"></span>
+                    </div>
+                </div>
+            </div>
+            <!--**********************************
+                    Nav header end
+            ***********************************-->
+
+            <!--**********************************
+                    Header start
+            ***********************************-->
+
+            <div class="header">
+                <div class="header-content">
+                    <nav class="navbar navbar-expand">
+                        <div class="collapse navbar-collapse justify-content-between">
+                            <div class="header-left">
+                                <div class="dashboard_bar">
+                                    {{title}}
+                                </div>
+                            </div>
+                            <ul class="navbar-nav header-right">
+
+                                <li class="nav-item dropdown header-profile">
+                                    <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
+                                        <img src="{{imagenUsuario}}" width="20" alt=""/>
+                                        <div class="header-info">
+                                            <span class="text-black"><strong> {{nombreUsuario}} </strong></span>
+                                            <p class="fs-12 mb-0">Super Admin</p>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a (click)="changeTitle(3)" [routerLink]="'/minera/perfil'" class="dropdown-item ai-icon">
+                                            <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                            <span class="ml-2">Perfil </span>
+                                        </a>
+                                        <a style="cursor: pointer;" (click)="mensaje()" data-toggle="modal" data-target="#contra" class="dropdown-item ai-icon">
+                                            <i class="fa fa-unlock text-success"></i>
+                                            <span class="ml-2">Cambiar Contraseña </span>
+                                        </a>
+                                        <a style="cursor: pointer;" (click)="closeSession()" class="dropdown-item ai-icon">
+                                            <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                                            <span class="ml-2">Cerrar Sesión </span>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!--**********************************
+                    Header end ti-comment-alt
+            ***********************************-->
+
+            <!--**********************************
+                    Sidebar start
+            ***********************************-->
+
+            <div class="deznav">
+                <div class="deznav-scroll">
+                    <ul  class="metismenu" id="menu">
+                        <li *ngFor="let side of sidebar">
+                            <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                                <i [ngClass]="side.icon"></i>
+                                <span class="nav-text">{{side.title}}</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li *ngFor="let subside of side.subtitle">
+                                    <a (click)="changeTitle(side.id)" [routerLink]="subside.link" > {{subside.name}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="copyright">
+                        <p><strong>MCKCHAIN-APP, Diseñado y Desarrollado por Diego Campos y Christian Silva</strong> © 2022 Todos los derechos reservados</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--**********************************
+                        Sidebar end
+            ***********************************-->
+
+            <!-- Content body start -->
+
+            <div class="content-body">
+                <div class="container-fluid">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="contra">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal de Confirmación</h5>
+                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center"> {{messagecontra}} </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-info" (click)="PasswordResetRequest()">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>                        
+
+            <footer class="bg-light text-center text-lg-start"></footer>
+            <!-- Content body end -->
+
+            <!-- Footer start
+        <app-footer></app-footer>-->
+            <!-- Footer end -->
+
+        </div>
+        <!-- Main wrapper end -->
+
+    </body>
+
+</html>
+
+

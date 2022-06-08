@@ -1,0 +1,64 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="form-row col-sm-12">
+                <div class="form-group col-sm-3 ml-auto">
+                    <input type="text" class="form-control" placeholder="Busque Aquí.." name="FilterPostNombre" >
+                </div>  
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="theadc text-center">
+                        <tr>
+                            <th scope="col">Mineral</th>
+                            <th scope="col">Fase de Mineral</th>
+                            <th scope="col">Fecha de Extracción</th>
+                            <th scope="col">Minera</th>
+                            <th scope="col">Ruc de Minera</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let list of minerales   
+                                                            | paginate: { itemsPerPage: 10, currentPage: p}" class="text-center">
+                            <td> {{list.nombreMineral}} </td>
+                            <td>{{list.faseMineral}}</td>
+                            <td>{{list.fechaextraccionMineral}}</td>
+                            <td>{{list.nombreMinera}}</td>
+                            <td>{{list.rucMinera}}</td>
+                            <td>
+                                <a (click)="hacerPedido(list)" type="button" class="btn light btn-success" data-toggle="modal" data-target="#pediddo" >
+                                    <span class="btn-icon-left text-success">
+                                        <i class="fa fa-check"></i>
+                                    </span>Pedido
+                                </a>                                 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="pediddo">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmación</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center"> {{messagecontra}} </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>  

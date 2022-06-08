@@ -1,0 +1,235 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="modal-title">Pedido de Estudios Culminado</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="theadc text-center">
+                        <tr>
+                            <th scope="col">Mineral</th>
+                            <th scope="col">Fase de Mineral</th>
+                            <th scope="col">Fecha de Extracción</th>
+                            <th scope="col">Minera</th>
+                            <th scope="col">Ruc de Minera</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let list of pedidost  
+                                                            | paginate: { itemsPerPage: 10, currentPage: p}" class="text-center">
+                            <td> {{list.nombreMineral}} </td>
+                            <td>{{list.faseMineral}}</td>
+                            <td>{{list.fechaextraccionMineral}}</td>
+                            <td>{{list.nombreMinera}}</td>
+                            <td>{{list.rucMinera}}</td>
+                            <td>
+                                <a (click)="mostrarSmart(list)" type="button" class="btn light btn-danger">
+                                    <span class="btn-icon-left text-danger">
+                                        <i class="a fa-exchange"></i>
+                                    </span>PDf
+                                </a> 
+                                <a (click)="verDetalle(list)" type="button" class="btn light btn-success">
+                                    <span class="btn-icon-left text-success">
+                                        <i class="fa fa-eye"></i>
+                                    </span>Detalle
+                                </a> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls> 
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="card">
+        <div class="card-header">
+            <h3 class="modal-title">Pedido Estudio en Proceso</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="theadc text-center">
+                        <tr>
+                            <th scope="col">Mineral</th>
+                            <th scope="col">Fase de Mineral</th>
+                            <th scope="col">Fecha de Extracción</th>
+                            <th scope="col">Minera</th>
+                            <th scope="col">Ruc de Minera</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let list of pedidospr   
+                                                            | paginate: { itemsPerPage: 10, currentPage: r}" class="text-center">
+                            <td> {{list.nombreMineral}} </td>
+                            <td>{{list.faseMineral}}</td>
+                            <td>{{list.fechaextraccionMineral}}</td>
+                            <td>{{list.nombreMinera}}</td>
+                            <td>{{list.rucMinera}}</td>                            
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <pagination-controls (pageChange)="r = $event" previousLabel="" nextLabel=""></pagination-controls> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="modal-title">Pedido de Estudio Pendientes</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="theadc text-center">
+                        <tr>
+                            <th scope="col">Mineral</th>
+                            <th scope="col">Fase de Mineral</th>
+                            <th scope="col">Fecha de Extracción</th>
+                            <th scope="col">Minera</th>
+                            <th scope="col">Ruc de Minera</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let list of pedidosp   
+                                                            | paginate: { itemsPerPage: 10, currentPage: q}" class="text-center">
+                            <td> {{list.nombreMineral}} </td>
+                            <td>{{list.faseMineral}}</td>
+                            <td>{{list.fechaextraccionMineral}}</td>
+                            <td>{{list.nombreMinera}}</td>
+                            <td>{{list.rucMinera}}</td>
+                            <td>
+                                <a type="button" (click)="solEstudio(list)" class="btn light btn-success" data-toggle="modal" data-target="#pediddo" >
+                                    <span class="btn-icon-left text-success">
+                                        <i class="fa fa-check"></i>
+                                    </span>Estudio
+                                </a> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <pagination-controls (pageChange)="q = $event" previousLabel="" nextLabel=""></pagination-controls> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #myModalInfo let-modal>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Análisis de Ley</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()"> 
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="detalleForm">
+                <div class="modal-body col-sm-12">
+                    <div class="form-row">
+                        <div class="form-group col-sm-4">
+                            <label>Nombre Minera</label>
+                            <input type="text" class="form-control" formControlName="nombreMinera">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label>RUC Minera</label>
+                            <input type="text" class="form-control" formControlName="rucMinera">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label>Encargado</label>
+                            <input type="text" class="form-control" formControlName="nombreEncargadoLaboratorio">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label>Mineral</label>
+                            <input type="text" class="form-control" formControlName="mineralAnalisisLey">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label>Caudal</label>
+                            <input type="text" class="form-control" formControlName="caudalAnalisisLey">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label>Densidad</label>
+                            <input type="text" class="form-control" formControlName="densidadpulpaAnalisisLey">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label>Humedad</label>
+                            <input type="text" class="form-control" formControlName="humedadAnalisisLey">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label>Peso</label>
+                            <input type="text" class="form-control" formControlName="pesoAnalisisLey">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label>Dis. Granulométrica</label>
+                            <input type="text" class="form-control" formControlName="distribuciongranulometricaAnalisisLey">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal" (click)="modal.close()">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+</div>
+
+<ng-template #myModalInfo2 let-modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Generar Smart Contract</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()"> 
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form [formGroup]="smartForm">
+            <div class="modal-body col-sm-12">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" formControlName="tramaAnalisisLeySmartContract">
+                    </div>
+                    <div *ngIf="this.viewAlertSuccess == 1" class="form-group col-sm-12">
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            <strong>¡Excelente!</strong> {{messagecopia}}
+                        </div>
+                    </div>
+                    <div *ngIf="this.viewAlertSuccess == 2" class="form-group col-sm-12">
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                            <strong>¡Error!</strong> {{messagecopia}}
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 text-center">
+                        <button type="button" class="btn btn-info" (click)="copiarSmart()">Copiar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger light" data-dismiss="modal" (click)="modal.close()">Cerrar</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Modal -->
+<div class="modal fade" id="pediddo">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmación</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center"> {{messagecontra}} </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>  

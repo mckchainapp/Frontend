@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Registro Minera - MckChain</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+
+    <body class="vh-100 bg-light" style="background: url(/assets/images/overlay-1.png) center;">
+
+        <div class="preloader">
+            <div class="status">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+
+        <div class="contain-box">
+            <div class="home-center">
+                <div class="home-desc-center">
+                    <div class="container">
+                        <div class="text-center">            
+                            <button type="submit" class="back-button btn text-primary btn-back"><a href="index" ><i class="mdi mdi-arrow-left mr-1"></i> Retroceder</a></button>
+                        </div> 
+                        <div class="row justify-content-center align-items center">
+                            <div class="col-lg-6">
+                                <div class="p-5 mt-5 px-3 rounded bg-white animate__animated animate__fadeInRight"> 
+                                    <div class="text-center animate__animated animate__fadeInLeft">
+                                        <a href="">
+                                            <img src="/assets/images/LogoMckchain.png" alt="" height="80" />
+                                        </a>
+                                    </div>
+                                    <br>                              
+                                    <div class="text-center">
+                                        <div class="form-group col-sm-12 text-center">
+                                            <h1>
+                                                <strong>
+                                                    <span class="text-info">Iniciar </span>
+                                                    <span class="text-danger">Sesión</span>
+                                                </strong>
+                                            </h1>
+                                        </div>
+                                        <p class="text-muted f-18">Inicie sesión como comprador</p>
+                                    </div>
+
+                                    <div class="custom-form">
+                                        <form name="mineraSigninForm" [formGroup]="compradorSigninForm" (ngSubmit)="SigninUsuario()">
+
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Usuario/Correo</label>
+                                                <input (input)="AlertDefault()" type="text" class="form-control" formControlName="usernameUsuario" id="nombres" 
+                                                placeholder="Ingrese un usuario" required [ngClass]="{
+                                                    'is-invalid': compradorSigninForm.controls['usernameUsuario'].invalid && 
+                                                                 (compradorSigninForm.controls['usernameUsuario'].dirty || 
+                                                                 compradorSigninForm.controls['usernameUsuario'].touched) , 
+                                                      'is-valid': compradorSigninForm.controls['usernameUsuario'].valid}">
+                                                <div id="emailUsuario" class="invalid-feedback">
+                                                    <span class="text-danger" *ngIf="compradorSigninForm.controls['usernameUsuario'].hasError('required')">
+                                                        No puede dejar este campo vacío
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-size: 1.4vh; font-weight: bolder;">Contraseña</label>
+
+                                                <div class="input-group">
+                                                    <input [type]="passwordTextType ? 'text' : 'password'" class="form-control"
+                                                    placeholder="Ingresa tu Contraseña" formControlName="passwordUsuario" required
+                                                    [ngClass]="{
+                                                        'is-invalid': compradorSigninForm.controls['passwordUsuario'].invalid && 
+                                                                     (compradorSigninForm.controls['passwordUsuario'].dirty || 
+                                                                     compradorSigninForm.controls['passwordUsuario'].touched) , 
+                                                          'is-valid': compradorSigninForm.controls['passwordUsuario'].valid}">
+                                                   
+                                                    <div class="input-group-append" (click)="changepasswordTextType()">
+                                                        <a type="button" class="input-group-text"
+                                                            style="background-color: #4CB0F5; border-top-right-radius: 45%; border-bottom-right-radius: 45%;">
+                                                            <i class="fa" [ngClass]="{
+                                                                                        'fa-eye-slash': passwordTextType,
+                                                                                            'fa-eye': !passwordTextType
+                                                                                    }" id="decrypt" style="color: white;"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div id="passwordUsuario" class="invalid-feedback">
+                                                        <span class="text-danger" *ngIf="compradorSigninForm.controls['passwordUsuario'].hasError('required')">
+                                                            No puede dejar este campo vacío
+                                                        </span>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                            </div>
+
+                                            <!--<input type="reset" value="Limpiar (:">-->
+                                            <div class="mt-3">
+                                                <button type="submit" [disabled]="!compradorSigninForm.valid" class="btn btn-danger btn-block text-uppercase" >Iniciar Sesión</button>
+                                            </div>
+
+                                            <div class="col-sm-12 mt-3" *ngIf="this.verificar">
+                                                <div class="alert alert-danger text-center" role="alert">
+                                                    Usuario o Contraseña Incorrecta
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 mb-0 text-center">
+                                                <p class="mb-0">¿No tienes cuenta?, <a href="signup/comprador" class="text-info">Regístrate Aquí</a></p>
+                                            </div>
+                                            <br>
+                                            <div class="mt-4 mb-0 text-center">
+                                                <p class="mb-0"> <a href="forgot/password" class="text-info"><i class="fa fa-unlock-alt"></i> ¿Olvidaste tu contraseña?</a></p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
